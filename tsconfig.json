@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom", "esnext.array"],
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@testing/*": ["testing/*"],
+      "@env/*": ["environments/*"],
+      "@style/*": ["style/*"],
+      "@translations/*": ["translations/*"],
+      "jszip": ["../node_modules/jszip/dist/jszip.min.js"]
+    }
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": false
+  }
+}
