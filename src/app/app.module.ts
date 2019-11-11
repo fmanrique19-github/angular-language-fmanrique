@@ -49,7 +49,15 @@ import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { LayoutNewComponent } from "./layout-new/layout-new.component";
 import { PositionStaticComponent } from "./position-static/position-static.component";
-import { PositionRelativeComponent } from './position-relative/position-relative.component';
+import { PositionRelativeComponent } from "./position-relative/position-relative.component";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -64,6 +72,7 @@ import { PositionRelativeComponent } from './position-relative/position-relative
     BrowserModule,
     BrowserAnimationsModule,
     A11yModule,
+    HttpClientModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
@@ -105,9 +114,17 @@ import { PositionRelativeComponent } from './position-relative/position-relative
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     AppRoutingModule
   ],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
